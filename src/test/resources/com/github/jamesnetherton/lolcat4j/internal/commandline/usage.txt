@@ -1,0 +1,13 @@
+Usage: java -jar lolcat4j-${project.version}.jar [OPTION]... [FILE]...
+
+Concatenate FILE(s), or standard input, to standard output.
+With no FILE, read standard input.
+
+-a, --animate    Enable psychedelics                               
+-d, --duration   Animation duration (default: 12)                  
+-F, --freq       Rainbow frequency (default: 0.1)                  
+-h, --help       Show this message                                 
+-S, --seed       Rainbow seed, 0 = random (default: 0)             
+-s, --speed      Animation speed (default: 20.0)                   
+-p, --spread     Rainbow spread (default: 3.0)                     
+-v, --version    Print version and exit                            
