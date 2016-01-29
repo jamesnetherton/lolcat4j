@@ -15,7 +15,7 @@ mvn clean package
 ```bash
 java -jar lolcat4j-0.1.0.jar [OPTION...] [FILE]...
 ```
-
+<!--
 # Use in your application
 
 Add the following Maven dependency to your pom.xml:
@@ -56,7 +56,7 @@ To use all of the default values:
 Lol lol = Lol.builder();
 lol.cat();
 ```
-
+-->
 # Options
 
 | Option  | Description  | Type  | Default Value  |
