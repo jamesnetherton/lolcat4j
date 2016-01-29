@@ -1,0 +1,19 @@
+machine:
+  java:
+    version: oraclejdk8
+
+branches:
+  only:
+    - master
+
+dependencies:
+  override:
+    - mvn clean install
+
+test:
+  override:
+    - echo true
+
+general:
+  artifacts:
+    - '**/target/*.jar'
