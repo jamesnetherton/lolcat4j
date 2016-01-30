@@ -32,6 +32,14 @@
     <tag>HEAD</tag>
   </scm>
 
+  <developers>
+    <developer>
+      <name>James Netherton</name>
+      <url>https://github.com/jamesnetherton</url>
+      <timezone>0</timezone>
+    </developer>
+  </developers>
+
   <issueManagement>
     <url>https://github.com/jamesnetherton/lolcat4j/issues</url>
     <system>GitHub</system>
