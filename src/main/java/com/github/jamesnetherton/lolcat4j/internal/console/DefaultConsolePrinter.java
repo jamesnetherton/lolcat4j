@@ -32,6 +32,16 @@ class DefaultConsolePrinter implements ConsolePrinter{
     private static final String ESCAPE_SEQUENCE_END = "\033[0m";
     private PrintStream printStream;
 
+    static {
+        // Make sure the console is restored to its original state if the application is interrupted
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                System.out.print(ESCAPE_SEQUENCE_START + "?25h");
+            }
+        });
+    }
+
     DefaultConsolePrinter(PrintStream printStream) {
         this.printStream = printStream;
     }

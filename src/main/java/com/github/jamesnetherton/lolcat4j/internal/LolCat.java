@@ -26,23 +26,14 @@
 package com.github.jamesnetherton.lolcat4j.internal;
 
 import com.github.jamesnetherton.lolcat4j.Lol;
+import com.github.jamesnetherton.lolcat4j.internal.commandline.OptionParseException;
 import com.github.jamesnetherton.lolcat4j.internal.commandline.OptionParser;
 import com.github.jamesnetherton.lolcat4j.internal.commandline.UnknownOptionException;
-import com.github.jamesnetherton.lolcat4j.internal.commandline.OptionParseException;
 import com.github.jamesnetherton.lolcat4j.internal.console.ConsoleReader;
 
 public final class LolCat {
 
     public static void main(String... args) {
-
-        // Make sure the console is restored to its original state if the application is interrupted
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                System.out.print("\033[?25h");
-            }
-        });
-
         try {
             final Lol lol = new OptionParser().parse(args);
 
