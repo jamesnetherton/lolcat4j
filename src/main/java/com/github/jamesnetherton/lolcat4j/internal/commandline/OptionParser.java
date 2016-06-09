@@ -30,7 +30,6 @@ import com.github.jamesnetherton.lolcat4j.Lol;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 
 public class OptionParser {
     private OptionList optionList = new DefaultOptionList();
@@ -55,8 +54,8 @@ public class OptionParser {
             if (method != null) {
                 try {
                     if (option.isValueRequired()) {
-                        Parameter[] parameters = method.getParameters();
-                        Class<?> type = parameters[0].getType();
+                        Class<?>[] parameterTypes = method.getParameterTypes();
+                        Class<?> type = parameterTypes[0];
                         if (type == Integer.class) {
                             method.invoke(builder, parseIntegerValue(option.getName(), option.getValue()));
                         } else if (type == Double.class) {
