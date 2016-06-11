@@ -26,7 +26,7 @@ Add the following Maven dependency to your pom.xml:
 <dependency>
   <groupId>com.github.jamesnetherton</groupId>
   <artifactId>lolcat4j</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 
