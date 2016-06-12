@@ -105,7 +105,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.github.jamesnetherton.lolcat4j.internal.LolCat</mainClass>
+              <mainClass>com.github.jamesnetherton.lolcat4j.internal.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
