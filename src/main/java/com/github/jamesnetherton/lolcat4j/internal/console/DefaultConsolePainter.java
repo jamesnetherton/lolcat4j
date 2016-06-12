@@ -40,8 +40,6 @@ class DefaultConsolePainter extends ConsolePainter {
         for (int i = 0; i < line.length(); i++) {
             consolePrinter.printColorized(getHexRgbString(lol, seed.getValue(), i), line.charAt(i));
         }
-
-        consolePrinter.printNewLine();
     }
 
     @Override

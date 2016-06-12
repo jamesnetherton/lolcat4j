@@ -27,14 +27,13 @@ package com.github.jamesnetherton.lolcat4j.internal.console;
 
 import com.github.jamesnetherton.lolcat4j.Lol;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 abstract class ConsolePainter {
 
@@ -53,12 +52,13 @@ abstract class ConsolePainter {
 
     public void paint(Lol lol, InputStream inputStream) throws IOException {
         final ColorSeed seed = new ColorSeed(lol.getSeed());
-        final BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        String line;
 
         beforePainting();
-        while ((line = reader.readLine()) != null) {
-            output(lol, seed, cleanString(line));
+        try (Scanner scanner = new Scanner(inputStream)) {
+            scanner.useDelimiter("(?<=\n)|(?!\n)(?<=\r)");
+            while (scanner.hasNext()) {
+                output(lol, seed, cleanString(scanner.next()));
+            }
         }
         afterPainting();
     }

@@ -38,14 +38,17 @@ class AnimatedConsolePainter extends ConsolePainter {
     @Override
     void output(Lol lol, ColorSeed seed, String line) {
         if (line.length() > 0) {
-            seed.increment();
+            String lineSeparator = System.getProperty("line.separator");
             int animationSeed = seed.getValue();
+            int lineLength = line.endsWith(lineSeparator) ? line.length() - lineSeparator.length() : 0;
+
+            seed.increment();
 
             for (int i = 1; i <= lol.getDuration(); i++) {
-                consolePrinter.cursorBack(line.length());
+                consolePrinter.cursorBack(lineLength);
                 animationSeed += lol.getSpread();
 
-                for (int j = 0; j < line.length(); j++) {
+                for (int j = 0; j < lineLength; j++) {
                     consolePrinter.printColorized(getHexRgbString(lol, animationSeed, j), line.charAt(j));
                 }
 

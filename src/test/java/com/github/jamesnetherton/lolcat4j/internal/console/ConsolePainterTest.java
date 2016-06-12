@@ -31,10 +31,10 @@ import com.github.jamesnetherton.lolcat4j.internal.console.utils.NonWritableOutp
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.util.Scanner;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class ConsolePainterTest {
     private static final String LOL_TXT = "lol.txt";
@@ -129,8 +129,8 @@ public class ConsolePainterTest {
         return new DefaultConsolePainter(printer);
     }
 
-    private String readFile(String fileName) throws FileNotFoundException {
-        File file = new File(getClass().getResource(fileName).getFile());
-        return new Scanner(file).useDelimiter("\\Z").next();
+    private String readFile(String fileName) throws Exception {
+        URI uri = getClass().getResource(fileName).toURI();
+        return new String(Files.readAllBytes(Paths.get(uri)));
     }
 }
