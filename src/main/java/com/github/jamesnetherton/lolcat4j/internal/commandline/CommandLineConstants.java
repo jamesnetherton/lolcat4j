@@ -25,7 +25,7 @@
  */
 package com.github.jamesnetherton.lolcat4j.internal.commandline;
 
-public class CommandLineConstants {
+public final class CommandLineConstants {
 
     // Command line options
     public static final String OPTION_ANIMATE = "-a";
