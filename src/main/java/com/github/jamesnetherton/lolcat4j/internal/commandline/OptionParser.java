@@ -57,9 +57,9 @@ public class OptionParser {
                         Class<?>[] parameterTypes = method.getParameterTypes();
                         Class<?> type = parameterTypes[0];
                         if (type.equals(Integer.class)) {
-                            method.invoke(builder, parseIntegerValue(option.getName(), option.getValue()));
+                            method.invoke(builder, parseIntegerValue(option));
                         } else if (type.equals(Double.class)) {
-                            method.invoke(builder, parseDoubleValue(option.getName(), option.getValue()));
+                            method.invoke(builder, parseDoubleValue(option));
                         } else if (type.equals(File.class)) {
                             method.invoke(builder, new File(option.getValue()));
                         } else {
@@ -131,19 +131,19 @@ public class OptionParser {
         this.optionList = optionList;
     }
 
-    private double parseDoubleValue(String optionName, String doubleValue) throws OptionParseException {
+    private double parseDoubleValue(Option option) throws OptionParseException {
         try {
-            return Double.parseDouble(doubleValue);
+            return Double.parseDouble(option.getValue());
         } catch (NumberFormatException e) {
-            throw new OptionParseException("Error: option " + optionName + " needs a double value");
+            throw new OptionParseException("Error: option " + option.getName() + " needs a double value");
         }
     }
 
-    private int parseIntegerValue(String optionName, String integerValue) throws OptionParseException {
+    private int parseIntegerValue(Option option) throws OptionParseException {
         try {
-            return Integer.parseInt(integerValue);
+            return Integer.parseInt(option.getValue());
         } catch (NumberFormatException e) {
-            throw new OptionParseException("Error: option " + optionName + " needs a integer value");
+            throw new OptionParseException("Error: option " + option.getName() + " needs a integer value");
         }
     }
 }
