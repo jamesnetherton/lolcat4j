@@ -27,7 +27,7 @@ package com.github.jamesnetherton.lolcat4j.internal.commandline;
 
 import java.lang.reflect.Method;
 
-class ReflectionUtils {
+final class ReflectionUtils {
     public static Method findMethod(Class<?> clazz, String methodName) {
         for (Method method : clazz.getDeclaredMethods()) {
             if (method.getName().equals(methodName)) {
