@@ -25,6 +25,6 @@
  */
 package com.github.jamesnetherton.lolcat4j.internal.commandline;
 
-interface MessageOutputter {
-    void output(String message);
+interface MessageWriter {
+    void write(String message);
 }

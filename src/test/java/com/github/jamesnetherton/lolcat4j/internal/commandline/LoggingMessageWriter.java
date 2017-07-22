@@ -25,11 +25,11 @@
  */
 package com.github.jamesnetherton.lolcat4j.internal.commandline;
 
-public class LoggingMessageOutputter implements MessageOutputter {
+public class LoggingMessageWriter implements MessageWriter {
     private String message;
 
     @Override
-    public void output(String message) {
+    public void write(String message) {
         this.message = message;
     }
 

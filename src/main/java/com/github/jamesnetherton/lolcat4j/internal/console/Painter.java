@@ -50,7 +50,7 @@ public class Painter {
                 System.err.println("Error reading from stream: " + e.getMessage());
             }
         } else {
-            // Read any content from STDIN
+            // Read content from STDIN
             try {
                 if (System.in.available() > 0) {
                     consolePainter.paint(lol, System.in);

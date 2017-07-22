@@ -152,14 +152,14 @@ public class OptionParserTest {
                 .build()
         );
 
-        LoggingMessageOutputter messageOutputter = new LoggingMessageOutputter();
+        LoggingMessageWriter messageWriter = new LoggingMessageWriter();
 
         OptionParser parser = new OptionParser();
         parser.setOptionList(optionList);
-        parser.setMessageOutputter(messageOutputter);
+        parser.setMessageWriter(messageWriter);
         parser.parse(options);
 
-        Assert.assertEquals(MessageGenerator.generateUsageMessage(optionList), messageOutputter.getMessage());
+        Assert.assertEquals(MessageGenerator.generateUsageMessage(optionList), messageWriter.getMessage());
     }
 
     @Test
@@ -177,14 +177,14 @@ public class OptionParserTest {
                 .build()
         );
 
-        LoggingMessageOutputter messageOutputter = new LoggingMessageOutputter();
+        LoggingMessageWriter messageWriter = new LoggingMessageWriter();
 
         OptionParser parser = new OptionParser();
         parser.setOptionList(optionList);
-        parser.setMessageOutputter(messageOutputter);
+        parser.setMessageWriter(messageWriter);
         parser.parse(options);
 
-        Assert.assertEquals(MessageGenerator.generateVersionMessage(), messageOutputter.getMessage());
+        Assert.assertEquals(MessageGenerator.generateVersionMessage(), messageWriter.getMessage());
     }
 
     private class OptionListBuilder {

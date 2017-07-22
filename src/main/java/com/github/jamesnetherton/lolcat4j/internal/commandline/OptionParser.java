@@ -33,18 +33,18 @@ import java.lang.reflect.Method;
 
 public class OptionParser {
     private OptionList optionList = new DefaultOptionList();
-    private MessageOutputter messageOutputter = new TerminatingMessageOutputter();
+    private MessageWriter messageWriter = new TerminatingLolCatMessageWriter();
 
     public Lol parse(String... args) throws OptionParseException, UnknownOptionException {
         OptionList parsedOptionList = parseOptions(args);
 
         if (parsedOptionList.containsOption("-h") || parsedOptionList.containsOption("--help")) {
-            messageOutputter.output(MessageGenerator.generateUsageMessage(optionList));
+            messageWriter.write(MessageGenerator.generateUsageMessage(optionList));
             return null;
         }
 
         if (parsedOptionList.containsOption("-v") || parsedOptionList.containsOption("--version")) {
-            messageOutputter.output(MessageGenerator.generateVersionMessage());
+            messageWriter.write(MessageGenerator.generateVersionMessage());
             return null;
         }
 
@@ -123,8 +123,8 @@ public class OptionParser {
         return parsedOptions;
     }
 
-    public void setMessageOutputter(MessageOutputter messageOutputter) {
-        this.messageOutputter = messageOutputter;
+    public void setMessageWriter(MessageWriter messageWriter) {
+        this.messageWriter = messageWriter;
     }
 
     public void setOptionList(OptionList optionList) {

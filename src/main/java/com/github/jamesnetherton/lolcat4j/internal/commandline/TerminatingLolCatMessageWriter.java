@@ -28,9 +28,9 @@ package com.github.jamesnetherton.lolcat4j.internal.commandline;
 import com.github.jamesnetherton.lolcat4j.Lol;
 import com.github.jamesnetherton.lolcat4j.LolCatConstants;
 
-class TerminatingMessageOutputter implements MessageOutputter {
+class TerminatingLolCatMessageWriter implements MessageWriter {
     @Override
-    public void output(String message) {
+    public void write(String message) {
         Lol lol = Lol.builder()
             .seed(LolCatConstants.DEFAULT_VALUE_SEED)
             .frequency(LolCatConstants.DEFAULT_VALUE_FREQUENCY)
