@@ -25,7 +25,7 @@
  */
 package com.github.jamesnetherton.lolcat4j.internal.commandline;
 
-public class OptionParseException extends Exception {
+class OptionParseException extends Exception {
     public OptionParseException(String message) {
         super(message);
     }
