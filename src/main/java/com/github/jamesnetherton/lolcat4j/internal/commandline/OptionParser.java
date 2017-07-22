@@ -56,11 +56,11 @@ public class OptionParser {
                     if (option.isValueRequired()) {
                         Class<?>[] parameterTypes = method.getParameterTypes();
                         Class<?> type = parameterTypes[0];
-                        if (type == Integer.class) {
+                        if (type.equals(Integer.class)) {
                             method.invoke(builder, parseIntegerValue(option.getName(), option.getValue()));
-                        } else if (type == Double.class) {
+                        } else if (type.equals(Double.class)) {
                             method.invoke(builder, parseDoubleValue(option.getName(), option.getValue()));
-                        } else if (type == File.class) {
+                        } else if (type.equals(File.class)) {
                             method.invoke(builder, new File(option.getValue()));
                         } else {
                             method.invoke(builder, option.getValue());
