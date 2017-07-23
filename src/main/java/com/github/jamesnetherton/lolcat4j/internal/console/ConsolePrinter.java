@@ -70,6 +70,10 @@ public class ConsolePrinter {
         printStream.println();
     }
 
+    public String cleanString(String s) {
+        return s.replaceAll("\\\\e\\[[\\d;]*[m|K]", "").replaceAll("\t", "        ");
+    }
+
     private String getHexRgbString(Lol lol, int seed, int index) {
         String rainbow = rainbow(lol.getFrequency(), seed + (index / lol.getSpread()));
         List<Integer> rgbValues = hexToRgb(rainbow);

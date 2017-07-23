@@ -34,7 +34,8 @@ import java.util.Scanner;
 
 public class ConsolePainter {
 
-    protected ConsolePrinter consolePrinter;
+    protected final ConsolePrinter consolePrinter;
+    private ColorSeed seed;
 
     public ConsolePainter(ConsolePrinter consolePrinter) {
         this.consolePrinter = consolePrinter;
@@ -46,13 +47,15 @@ public class ConsolePainter {
     }
 
     public void paint(Lol lol, InputStream inputStream) {
-        final ColorSeed seed = new ColorSeed(lol.getSeed());
+        if (seed == null) {
+            seed = new ColorSeed(lol.getSeed());
+        }
 
         beforePainting();
         try (Scanner scanner = new Scanner(inputStream)) {
             scanner.useDelimiter("(?<=\n)|(?!\n)(?<=\r)");
             while (scanner.hasNext()) {
-                output(lol, seed, cleanString(scanner.next()));
+                output(lol, seed, consolePrinter.cleanString(scanner.next()));
             }
         }
         afterPainting();
@@ -64,15 +67,15 @@ public class ConsolePainter {
         for (int i = 0; i < line.length(); i++) {
             consolePrinter.printColorized(lol, seed.getValue(), i, line.charAt(i));
         }
+
+        if (!line.endsWith(System.lineSeparator())) {
+            consolePrinter.printNewLine();
+        }
     }
 
     protected void beforePainting() {
     }
 
     protected void afterPainting() {
-    }
-
-    private String cleanString(String s) {
-        return s.replaceAll("\\\\e\\[[\\d;]*[m|K]", "").replaceAll("\t", "        ");
     }
 }

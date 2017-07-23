@@ -46,6 +46,8 @@ public final class Lol {
     private Double spread = LolCatConstants.DEFAULT_VALUE_SPREAD;
     private String text;
     private List<File> files = new ArrayList<>();
+    private ConsolePrinter consolePrinter = new ConsolePrinter(System.out);
+    private ConsolePainter consolePainter = new ConsolePainter(consolePrinter);
 
     private Lol() {
     }
@@ -115,9 +117,6 @@ public final class Lol {
     }
 
     public void cat() {
-        ConsolePrinter consolePrinter = new ConsolePrinter(System.out);
-        ConsolePainter consolePainter = isAnimate() ? new AnimatedConsolePainter(consolePrinter) : new ConsolePainter(consolePrinter);
-
         if (getText() != null && !getText().isEmpty()) {
             consolePainter.paint(this);
         } else {
@@ -155,6 +154,7 @@ public final class Lol {
 
         public LolCatBuilder animate() {
             lol.setAnimate(true);
+            lol.consolePainter = new AnimatedConsolePainter(lol.consolePrinter);
             return this;
         }
 
