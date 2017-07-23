@@ -29,14 +29,12 @@ import com.github.jamesnetherton.lolcat4j.Lol;
 
 class AnimatedConsolePainter extends ConsolePainter {
 
-    private ConsolePrinter consolePrinter;
-
     public AnimatedConsolePainter(ConsolePrinter consolePrinter) {
-        this.consolePrinter = consolePrinter;
+        super(consolePrinter);
     }
 
     @Override
-    void output(Lol lol, ColorSeed seed, String line) {
+    protected void output(Lol lol, ColorSeed seed, String line) {
         if (!line.isEmpty()) {
             String lineSeparator = System.lineSeparator();
             int animationSeed = seed.getValue();
@@ -45,11 +43,11 @@ class AnimatedConsolePainter extends ConsolePainter {
             seed.increment();
 
             for (int i = 1; i <= lol.getDuration(); i++) {
-                consolePrinter.cursorBack(lineLength);
+                consolePrinter.moveCursor(lineLength);
                 animationSeed += lol.getSpread();
 
                 for (int j = 0; j < lineLength; j++) {
-                    consolePrinter.printColorized(getHexRgbString(lol, animationSeed, j), line.charAt(j));
+                    consolePrinter.printColorized(lol, animationSeed, j, line.charAt(j));
                 }
 
                 try {
@@ -65,12 +63,12 @@ class AnimatedConsolePainter extends ConsolePainter {
     }
 
     @Override
-    void beforePainting() {
+    protected void beforePainting() {
         consolePrinter.hideCursor();
     }
 
     @Override
-    void afterPainting() {
+    protected void afterPainting() {
         consolePrinter.showCursor();
     }
 }

@@ -33,14 +33,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Painter {
-    private ConsolePrinter consolePrinter = new DefaultConsolePrinter(System.out);
+    private ConsolePrinter consolePrinter = new ConsolePrinter(System.out);
 
     public void paint(Lol lol) {
         ConsolePainter consolePainter;
         if (lol.isAnimate()) {
             consolePainter = new AnimatedConsolePainter(consolePrinter);
         } else {
-            consolePainter = new DefaultConsolePainter(consolePrinter);
+            consolePainter = new ConsolePainter(consolePrinter);
         }
 
         if (lol.getText() != null && !lol.getText().isEmpty()) {

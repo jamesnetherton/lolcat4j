@@ -122,11 +122,11 @@ public class ConsolePainterTest {
 
 
     private ConsolePainter createPainter(PrintStream printStream, Lol lol) {
-        DefaultConsolePrinter printer = new DefaultConsolePrinter(printStream);
+        ConsolePrinter printer = new ConsolePrinter(printStream);
         if (lol.isAnimate()) {
             return new AnimatedConsolePainter(printer);
         }
-        return new DefaultConsolePainter(printer);
+        return new ConsolePainter(printer);
     }
 
     private String readFile(String fileName) throws Exception {
