@@ -32,11 +32,11 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-class ConsolePainter {
+public class ConsolePainter {
 
     protected ConsolePrinter consolePrinter;
 
-    ConsolePainter(ConsolePrinter consolePrinter) {
+    public ConsolePainter(ConsolePrinter consolePrinter) {
         this.consolePrinter = consolePrinter;
     }
 

@@ -27,7 +27,7 @@ package com.github.jamesnetherton.lolcat4j.internal.console;
 
 import com.github.jamesnetherton.lolcat4j.Lol;
 
-class AnimatedConsolePainter extends ConsolePainter {
+public class AnimatedConsolePainter extends ConsolePainter {
 
     public AnimatedConsolePainter(ConsolePrinter consolePrinter) {
         super(consolePrinter);

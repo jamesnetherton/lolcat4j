@@ -25,9 +25,14 @@
  */
 package com.github.jamesnetherton.lolcat4j;
 
-import com.github.jamesnetherton.lolcat4j.internal.console.Painter;
+import com.github.jamesnetherton.lolcat4j.internal.console.AnimatedConsolePainter;
+import com.github.jamesnetherton.lolcat4j.internal.console.ConsolePainter;
+import com.github.jamesnetherton.lolcat4j.internal.console.ConsolePrinter;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +45,6 @@ public final class Lol {
     private Double spread = LolCatConstants.DEFAULT_VALUE_SPREAD;
     private String text;
     private List<File> files = new ArrayList<>();
-    private Painter painter = new Painter();
 
     private Lol() {
     }
@@ -110,7 +114,30 @@ public final class Lol {
     }
 
     public void cat() {
-        painter.paint(this);
+        ConsolePrinter consolePrinter = new ConsolePrinter(System.out);
+        ConsolePainter consolePainter = isAnimate() ? new AnimatedConsolePainter(consolePrinter) : new ConsolePainter(consolePrinter);
+
+        if (getText() != null && !getText().isEmpty()) {
+            consolePainter.paint(this);
+        } else {
+            try {
+                if (System.in.available() > 0) {
+                    consolePainter.paint(this, System.in);
+                }
+            } catch (IOException e) {
+                System.err.println("Error reading from STDIN: " + e.getMessage());
+            }
+
+            for (File file : this.getFiles()) {
+                try (FileInputStream fileInputStream = new FileInputStream(file)) {
+                    consolePainter.paint(this, fileInputStream);
+                } catch (FileNotFoundException e) {
+                    throw new IllegalStateException(e);
+                } catch (IOException e) {
+                    throw new IllegalStateException(e);
+                }
+            }
+        }
     }
 
     public static LolCatBuilder builder() {

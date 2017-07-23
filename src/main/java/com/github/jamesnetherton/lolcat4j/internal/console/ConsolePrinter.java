@@ -31,7 +31,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-class ConsolePrinter {
+public class ConsolePrinter {
     private static final String ESCAPE_SEQUENCE_START = "\033[";
     private static final String ESCAPE_SEQUENCE_END = "\033[0m";
     private PrintStream printStream;
@@ -46,7 +46,7 @@ class ConsolePrinter {
         });
     }
 
-    ConsolePrinter(PrintStream printStream) {
+    public ConsolePrinter(PrintStream printStream) {
         this.printStream = printStream;
     }
 
