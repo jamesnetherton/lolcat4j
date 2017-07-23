@@ -3,7 +3,7 @@
 
   <groupId>com.github.jamesnetherton</groupId>
   <artifactId>lolcat4j</artifactId>
-  <version>0.3.0</version>
+  <version>0.4.0-SNAPSHOT</version>
 
   <name>lolcat4j</name>
   <description>Rainbows and unicorns!</description>
@@ -29,7 +29,7 @@
     <connection>scm:git:git://github.com/jamesnetherton/lolcat4j.git</connection>
     <developerConnection>scm:git:git@github.com:jamesnetherton/lolcat4j.git</developerConnection>
     <url>${project.url}</url>
-    <tag>0.3.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <developers>
