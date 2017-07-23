@@ -55,7 +55,8 @@ class AnimatedConsolePainter extends ConsolePainter {
                 try {
                     Thread.sleep((long) ((1.0 / lol.getSpeed()) * 1000));
                 } catch (InterruptedException e) {
-                    // Ignore
+                    Thread.currentThread().interrupt();
+                    return;
                 }
             }
 
