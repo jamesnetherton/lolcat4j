@@ -34,6 +34,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public final class Lol {
@@ -110,7 +111,7 @@ public final class Lol {
     }
 
     public List<File> getFiles() {
-        return files;
+        return Collections.unmodifiableList(files);
     }
 
     public void cat() {
