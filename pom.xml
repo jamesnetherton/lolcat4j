@@ -3,7 +3,7 @@
 
   <groupId>com.github.jamesnetherton</groupId>
   <artifactId>lolcat4j</artifactId>
-  <version>0.2.1-SNAPSHOT</version>
+  <version>0.3.0-SNAPSHOT</version>
 
   <name>lolcat4j</name>
   <description>Rainbows and unicorns!</description>
