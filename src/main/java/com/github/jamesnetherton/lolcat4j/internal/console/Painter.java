@@ -43,7 +43,7 @@ public class Painter {
             consolePainter = new DefaultConsolePainter(consolePrinter);
         }
 
-        if (lol.getText() != null && lol.getText().trim().length() > 0) {
+        if (lol.getText() != null && !lol.getText().isEmpty()) {
             consolePainter.paint(lol);
         } else {
             // Read content from STDIN

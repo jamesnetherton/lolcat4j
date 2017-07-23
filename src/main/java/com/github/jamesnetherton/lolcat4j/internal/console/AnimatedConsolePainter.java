@@ -37,7 +37,7 @@ class AnimatedConsolePainter extends ConsolePainter {
 
     @Override
     void output(Lol lol, ColorSeed seed, String line) {
-        if (line.length() > 0) {
+        if (!line.isEmpty()) {
             String lineSeparator = System.lineSeparator();
             int animationSeed = seed.getValue();
             int lineLength = line.endsWith(lineSeparator) ? line.length() - lineSeparator.length() : 0;
