@@ -44,11 +44,7 @@ public class Painter {
         }
 
         if (lol.getText() != null && lol.getText().trim().length() > 0) {
-            try {
-                consolePainter.paint(lol);
-            } catch (IOException e) {
-                System.err.println("Error reading from stream: " + e.getMessage());
-            }
+            consolePainter.paint(lol);
         } else {
             // Read content from STDIN
             try {
@@ -64,9 +60,9 @@ public class Painter {
                 try (FileInputStream fileInputStream = new FileInputStream(file)) {
                     consolePainter.paint(lol, fileInputStream);
                 } catch (FileNotFoundException e) {
-                    System.err.println(file.getName() + ": No such file or directory");
+                    throw new IllegalStateException(e);
                 } catch (IOException e) {
-                    System.err.println("Error reading from stream: " + e.getMessage());
+                    throw new IllegalStateException(e);
                 }
             }
         }

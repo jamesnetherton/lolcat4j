@@ -31,6 +31,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -41,16 +42,12 @@ abstract class ConsolePainter {
     abstract void beforePainting();
     abstract void afterPainting();
 
-    public void paint(Lol lol) throws IOException {
-        try {
-            InputStream inputStream = new ByteArrayInputStream(lol.getText().getBytes("UTF-8"));
-            paint(lol, inputStream);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
+    public void paint(Lol lol) {
+        InputStream inputStream = new ByteArrayInputStream(lol.getText().getBytes(StandardCharsets.UTF_8));
+        paint(lol, inputStream);
     }
 
-    public void paint(Lol lol, InputStream inputStream) throws IOException {
+    public void paint(Lol lol, InputStream inputStream) {
         final ColorSeed seed = new ColorSeed(lol.getSeed());
 
         beforePainting();
