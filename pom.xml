@@ -16,13 +16,13 @@
     <version.junit>4.12</version.junit>
 
     <!-- Plugin versions -->
-    <version.license.maven.plugin>1.8</version.license.maven.plugin>
-    <version.maven.compiler.plugin>3.2</version.maven.compiler.plugin>
+    <version.license.maven.plugin>1.13</version.license.maven.plugin>
+    <version.maven.compiler.plugin>3.6.1</version.maven.compiler.plugin>
     <version.maven.gpg.plugin>1.6</version.maven.gpg.plugin>
-    <version.maven.jar.plugin>2.6</version.maven.jar.plugin>
-    <version.maven.javadoc.plugin>2.10.3</version.maven.javadoc.plugin>
+    <version.maven.jar.plugin>3.0.2</version.maven.jar.plugin>
+    <version.maven.javadoc.plugin>3.0.0-M1</version.maven.javadoc.plugin>
     <version.maven.release.plugin>2.5.3</version.maven.release.plugin>
-    <version.maven.source.plugin>2.4</version.maven.source.plugin>
+    <version.maven.source.plugin>3.0.1</version.maven.source.plugin>
   </properties>
 
   <scm>
