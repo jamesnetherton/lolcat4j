@@ -31,7 +31,6 @@ import com.github.jamesnetherton.lolcat4j.internal.console.ConsolePrinter;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -131,8 +130,6 @@ public final class Lol {
             for (File file : this.getFiles()) {
                 try (FileInputStream fileInputStream = new FileInputStream(file)) {
                     consolePainter.paint(this, fileInputStream);
-                } catch (FileNotFoundException e) {
-                    throw new IllegalStateException(e);
                 } catch (IOException e) {
                     throw new IllegalStateException(e);
                 }

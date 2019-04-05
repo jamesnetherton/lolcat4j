@@ -47,7 +47,6 @@ public class MessageGeneratorTest {
                 String line = scanner.nextLine();
                 builder.append(line).append("\n");
             }
-            scanner.close();
         }
 
         Assert.assertEquals(builder.toString(), MessageGenerator.generateUsageMessage(new DefaultOptionList()));
