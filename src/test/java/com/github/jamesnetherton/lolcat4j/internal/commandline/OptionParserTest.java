@@ -187,8 +187,8 @@ public class OptionParserTest {
         Assert.assertEquals(MessageGenerator.generateVersionMessage(), messageWriter.getMessage());
     }
 
-    private class OptionListBuilder {
-        private List<String> options = new ArrayList<>();
+    private static class OptionListBuilder {
+        private final List<String> options = new ArrayList<>();
         private boolean prefix;
 
         public String[] build() {

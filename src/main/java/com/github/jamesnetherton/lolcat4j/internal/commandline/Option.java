@@ -103,7 +103,7 @@ class Option {
     }
 
     static final class OptionsBuilder {
-        private Option option = new Option();
+        private final Option option = new Option();
 
         public OptionsBuilder shortOption(String shortOption) {
             option.setShortOption(shortOption);

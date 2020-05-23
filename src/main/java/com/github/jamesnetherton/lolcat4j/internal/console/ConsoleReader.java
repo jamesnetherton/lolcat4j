@@ -30,7 +30,7 @@ import com.github.jamesnetherton.lolcat4j.Lol;
 import java.io.Console;
 
 public class ConsoleReader {
-    private Lol lol;
+    private final Lol lol;
 
     public ConsoleReader(Lol lol) {
         this.lol = lol;

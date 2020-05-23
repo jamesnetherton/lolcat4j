@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class OptionList {
-    private List<Option> options = new ArrayList<>();
+    private final List<Option> options = new ArrayList<>();
 
     public void addToOptions(Option option) {
         options.add(option);

@@ -29,7 +29,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 public class LoggingPrintStream extends PrintStream {
-    private StringBuilder loggedOutput = new StringBuilder();
+    private final StringBuilder loggedOutput = new StringBuilder();
 
     public LoggingPrintStream(OutputStream out) {
         super(out);

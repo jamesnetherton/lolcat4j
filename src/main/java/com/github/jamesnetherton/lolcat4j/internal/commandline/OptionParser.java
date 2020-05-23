@@ -28,8 +28,6 @@ package com.github.jamesnetherton.lolcat4j.internal.commandline;
 import com.github.jamesnetherton.lolcat4j.Lol;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 public class OptionParser {
     private OptionList optionList = new DefaultOptionList();
@@ -50,29 +48,28 @@ public class OptionParser {
 
         Lol.LolCatBuilder builder = Lol.builder();
         for (Option option : parsedOptionList.getOptions()) {
-            Method method = ReflectionUtils.findMethod(Lol.LolCatBuilder.class, option.getBuilderMethod());
-            if (method != null) {
-                try {
-                    if (option.isValueRequired()) {
-                        Class<?>[] parameterTypes = method.getParameterTypes();
-                        Class<?> type = parameterTypes[0];
-                        if (type.equals(Integer.class)) {
-                            method.invoke(builder, parseIntegerValue(option));
-                        } else if (type.equals(Double.class)) {
-                            method.invoke(builder, parseDoubleValue(option));
-                        } else if (type.equals(File.class)) {
-                            method.invoke(builder, new File(option.getValue()));
-                        } else {
-                            method.invoke(builder, option.getValue());
-                        }
-                    } else {
-                        method.invoke(builder);
-                    }
-                } catch (InvocationTargetException | IllegalAccessException e) {
-                    throw new IllegalStateException("Unable to handle option: " + option.toString(), e);
-                }
-            } else {
-                throw new IllegalStateException("Unable to handle option: " + option.toString());
+            switch (option.getName()) {
+                case "animate":
+                    builder.animate();
+                    break;
+                case "duration":
+                    builder.duration(parseIntegerValue(option));
+                    break;
+                case "file":
+                    builder.file(new File(option.getValue()));
+                    break;
+                case "freq":
+                    builder.frequency(parseDoubleValue(option));
+                    break;
+                case "seed":
+                    builder.seed(parseIntegerValue(option));
+                    break;
+                case "speed":
+                    builder.speed(parseDoubleValue(option));
+                    break;
+                case "spread":
+                    builder.spread(parseDoubleValue(option));
+                    break;
             }
         }
 

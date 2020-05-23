@@ -34,7 +34,7 @@ import java.util.List;
 public class ConsolePrinter {
     private static final String ESCAPE_SEQUENCE_START = "\033[";
     private static final String ESCAPE_SEQUENCE_END = "\033[0m";
-    private PrintStream printStream;
+    private final PrintStream printStream;
 
     static {
         // Make sure the console is restored to its original state if the application is interrupted
