@@ -1,6 +1,6 @@
 # lolcat4j
 
-[![CircleCI](https://img.shields.io/circleci/project/github/jamesnetherton/lolcat4j/master.svg)](https://circleci.com/gh/jamesnetherton/lolcat4j/tree/master)
+![Lolcat4j CI Build](https://github.com/jamesnetherton/lolcat4j/workflows/Lolcat4j%20CI%20Build/badge.svg?branch=master)
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.jamesnetherton/lolcat4j.svg?maxAge=600)](http://search.maven.org/#search%7Cga%7C1%7Clolcat4j)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=600)](https://opensource.org/licenses/MIT)
 
