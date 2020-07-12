@@ -19,7 +19,7 @@ mvn clean package
 ## Running
 
 ```bash
-java -jar lolcat4j-0.3.0.jar [OPTION...] [FILE]...
+java -jar lolcat4j-0.4.0.jar [OPTION...] [FILE]...
 ```
 
 ## Use in your application
@@ -30,7 +30,7 @@ Add the following Maven dependency to your pom.xml:
 <dependency>
   <groupId>com.github.jamesnetherton</groupId>
   <artifactId>lolcat4j</artifactId>
-  <version>0.3.0</version>
+  <version>0.4.0</version>
 </dependency>
 ```
 
