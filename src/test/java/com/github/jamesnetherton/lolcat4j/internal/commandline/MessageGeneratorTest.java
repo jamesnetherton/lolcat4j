@@ -45,7 +45,7 @@ public class MessageGeneratorTest {
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                builder.append(line).append("\n");
+                builder.append(line).append(System.lineSeparator());
             }
         }
 

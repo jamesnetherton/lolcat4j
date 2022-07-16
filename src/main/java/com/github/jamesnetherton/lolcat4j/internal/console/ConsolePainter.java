@@ -67,10 +67,6 @@ public class ConsolePainter {
         for (int i = 0; i < line.length(); i++) {
             consolePrinter.printColorized(lol, seed.getValue(), i, line.charAt(i));
         }
-
-        if (!line.endsWith(System.lineSeparator())) {
-            consolePrinter.printNewLine();
-        }
     }
 
     protected void beforePainting() {

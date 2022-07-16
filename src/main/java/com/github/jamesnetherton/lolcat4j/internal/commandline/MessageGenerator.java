@@ -36,11 +36,16 @@ class MessageGenerator {
         StringBuilder builder = new StringBuilder();
         builder.append("Usage: java -jar lolcat4j-");
         builder.append(getVersion());
-        builder.append(".jar [OPTION]... [FILE]...\n\n");
-        builder.append("Concatenate FILE(s), or standard input, to standard output.\n");
-        builder.append("With no FILE, read standard input.\n\n");
+        builder.append(".jar [OPTION]... [FILE]...");
+        builder.append(System.lineSeparator());
+        builder.append(System.lineSeparator());
+        builder.append("Concatenate FILE(s), or standard input, to standard output.");
+        builder.append(System.lineSeparator());
+        builder.append("With no FILE, read standard input.");
+        builder.append(System.lineSeparator());
+        builder.append(System.lineSeparator());
         for (Option option : optionList.getOptions()) {
-            builder.append(String.format("%-2s, --%-10s %-50s\n", option.getShortOption(), option.toString(), option.getDescription()));
+            builder.append(String.format("%-2s, --%-10s %-50s" + System.lineSeparator(), option.getShortOption(), option, option.getDescription()));
         }
         return builder.toString();
     }
