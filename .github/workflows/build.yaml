@@ -2,6 +2,8 @@ name: Lolcat4j CI Build
 
 on:
   push:
+    branches:
+      - master
     paths-ignore:
       - '**.md'
       - 'LICENSE'
@@ -9,6 +11,10 @@ on:
     paths-ignore:
       - '**.md'
       - 'LICENSE'
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
 
 jobs:
   build:
