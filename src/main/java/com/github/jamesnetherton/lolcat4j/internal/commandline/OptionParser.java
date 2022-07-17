@@ -73,7 +73,9 @@ public class OptionParser {
             }
         }
 
-        return builder.build();
+        Lol lol = builder.build();
+        lol.setInteractive(true);
+        return lol;
     }
 
     private OptionList parseOptions(String... args) throws UnknownOptionException {

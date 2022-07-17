@@ -44,9 +44,10 @@ public final class Lol {
     private Double speed = LolCatConstants.DEFAULT_VALUE_SPEED;
     private Double spread = LolCatConstants.DEFAULT_VALUE_SPREAD;
     private String text;
-    private List<File> files = new ArrayList<>();
-    private ConsolePrinter consolePrinter = new ConsolePrinter(System.out);
+    private final List<File> files = new ArrayList<>();
+    private final ConsolePrinter consolePrinter = new ConsolePrinter(System.out);
     private ConsolePainter consolePainter = new ConsolePainter(consolePrinter);
+    private boolean interactive;
 
     private Lol() {
     }
@@ -115,6 +116,14 @@ public final class Lol {
         return Collections.unmodifiableList(files);
     }
 
+    public boolean isInteractive() {
+        return interactive;
+    }
+
+    public void setInteractive(boolean interactive) {
+        this.interactive = interactive;
+    }
+
     public void cat() {
         if (getText() != null && !getText().isEmpty()) {
             consolePainter.paint(this);
@@ -143,7 +152,7 @@ public final class Lol {
 
     public static final class LolCatBuilder {
 
-        private Lol lol;
+        private final Lol lol;
 
         public LolCatBuilder() {
             lol = new Lol();

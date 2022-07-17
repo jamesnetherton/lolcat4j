@@ -47,7 +47,7 @@ public class ConsolePainter {
     }
 
     public void paint(Lol lol, InputStream inputStream) {
-        String next = null;
+        String lastPaintedText = null;
         if (seed == null) {
             seed = new ColorSeed(lol.getSeed());
         }
@@ -56,11 +56,17 @@ public class ConsolePainter {
         try (Scanner scanner = new Scanner(inputStream)) {
             scanner.useDelimiter("(?<=\n)|(?!\n)(?<=\r)");
             while (scanner.hasNext()) {
-                next = scanner.next();
-                output(lol, seed, consolePrinter.cleanString(next));
+                lastPaintedText = scanner.next();
+                output(lol, seed, consolePrinter.cleanString(lastPaintedText));
             }
         }
-        afterPainting(next);
+        afterPainting();
+
+        if (lol.isInteractive()) {
+            if (lastPaintedText != null && !lastPaintedText.endsWith("\n") && !lastPaintedText.endsWith("\r\n")) {
+                System.out.print(System.lineSeparator());
+            }
+        }
     }
 
     protected void output(Lol lol, ColorSeed seed, String line) {
@@ -74,9 +80,6 @@ public class ConsolePainter {
     protected void beforePainting() {
     }
 
-    protected void afterPainting(String lastLine) {
-        if (!lastLine.endsWith("\n") && !lastLine.endsWith("\r\n")) {
-            System.out.print(System.lineSeparator());
-        }
+    protected void afterPainting() {
     }
 }
