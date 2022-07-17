@@ -135,7 +135,6 @@ public final class Lol {
                 }
             }
         }
-        System.out.print(System.lineSeparator());
     }
 
     public static LolCatBuilder builder() {

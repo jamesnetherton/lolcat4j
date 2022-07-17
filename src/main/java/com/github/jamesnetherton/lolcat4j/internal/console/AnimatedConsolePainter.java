@@ -78,7 +78,8 @@ public class AnimatedConsolePainter extends ConsolePainter {
     }
 
     @Override
-    protected void afterPainting() {
+    protected void afterPainting(String next) {
         consolePrinter.showCursor();
+        super.afterPainting(next);
     }
 }
