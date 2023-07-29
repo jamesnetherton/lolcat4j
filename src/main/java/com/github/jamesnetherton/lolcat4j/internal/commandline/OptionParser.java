@@ -100,7 +100,7 @@ public class OptionParser {
                         parsedOptions.addToOptions(options);
                     }
                 } else {
-                    if (lastArg.length() > 0 && lastArg.startsWith("-")) {
+                    if (lastArg.startsWith("-")) {
                         Option option = optionList.findOption(lastArg);
                         option.setValue(arg);
                         parsedOptions.addToOptions(option);

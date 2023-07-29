@@ -65,13 +65,13 @@ lol.cat();
 
 ## Options
 
-| Option  | Description  | Type  | Default Value  |
-|---|---|---|---|
-| -a, --animate  | Enable psychedelics | Boolean | false |
-| -d, --duration  | Animation duration  | Integer | 12 |
-| -F, --freq  | Rainbow frequency | Double | 0.1 |
-| -h, --help  | Show usage message |   |   |
-| -S, --seed  | Rainbow seed, 0 = random | Integer | 0 |
-| -s, --speed  | Animation speed | Double | 20.0 |
-| -p, --spread  | Rainbow spread | Double | 3.0 |
-| -v, --version  | Print version and exit |   |   |
+| Option         | Description              | Type    | Default Value |
+|----------------|--------------------------|---------|---------------|
+| -a, --animate  | Enable psychedelics      | Boolean | false         |
+| -d, --duration | Animation duration       | Integer | 12            |
+| -F, --freq     | Rainbow frequency        | Double  | 0.1           |
+| -h, --help     | Show usage message       |         |               |
+| -S, --seed     | Rainbow seed, 0 = random | Integer | 0             |
+| -s, --speed    | Animation speed          | Double  | 20.0          |
+| -p, --spread   | Rainbow spread           | Double  | 3.0           |
+| -v, --version  | Print version and exit   |         |               |

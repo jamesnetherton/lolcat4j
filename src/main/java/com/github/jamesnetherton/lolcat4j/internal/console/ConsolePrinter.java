@@ -81,11 +81,11 @@ public class ConsolePrinter {
     }
 
     private String rainbow(double frequency, double index) {
-        Double red = Math.sin(frequency * index + 0) * 127 + 128;
-        Double green = Math.sin(frequency * index + 2 * Math.PI / 3) * 127 + 128;
-        Double blue = Math.sin(frequency * index + 4 * Math.PI / 3) * 127 + 128;
+        double red = Math.sin(frequency * index + 0) * 127 + 128;
+        double green = Math.sin(frequency * index + 2 * Math.PI / 3) * 127 + 128;
+        double blue = Math.sin(frequency * index + 4 * Math.PI / 3) * 127 + 128;
 
-        return String.format("#%02X%02X%02X", red.intValue(), green.intValue(), blue.intValue());
+        return String.format("#%02X%02X%02X", (int) red, (int) green, (int) blue);
     }
 
     private List<Integer> hexToRgb(String hexString) {

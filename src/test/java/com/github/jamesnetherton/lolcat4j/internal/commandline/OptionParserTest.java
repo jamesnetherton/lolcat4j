@@ -193,7 +193,7 @@ public class OptionParserTest {
         private boolean prefix;
 
         public String[] build() {
-            return options.toArray(new String[options.size()]);
+            return options.toArray(new String[0]);
         }
 
         public OptionListBuilder withPrefix() {
