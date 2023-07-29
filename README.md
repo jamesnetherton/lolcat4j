@@ -6,7 +6,7 @@
 
 Java port of the [lolcat Ruby Gem](https://github.com/busyloop/lolcat).
 
-Requires Java 8 or later.
+Requires Java 11 or later.
 
 ## Building with Maven
 
