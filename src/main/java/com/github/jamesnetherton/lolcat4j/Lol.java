@@ -146,6 +146,11 @@ public final class Lol {
         }
     }
 
+    public void cat(String text) {
+        setText(text);
+        cat();
+    }
+
     public static LolCatBuilder builder() {
         return new LolCatBuilder();
     }
