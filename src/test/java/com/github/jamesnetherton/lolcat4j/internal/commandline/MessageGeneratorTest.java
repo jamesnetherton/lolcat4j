@@ -25,15 +25,15 @@
  */
 package com.github.jamesnetherton.lolcat4j.internal.commandline;
 
-
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Scanner;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MessageGeneratorTest {
 
@@ -49,7 +49,7 @@ public class MessageGeneratorTest {
             }
         }
 
-        Assert.assertEquals(builder.toString(), MessageGenerator.generateUsageMessage(new DefaultOptionList()));
+        assertEquals(builder.toString(), MessageGenerator.generateUsageMessage(new DefaultOptionList()));
     }
 
     @Test
@@ -58,6 +58,6 @@ public class MessageGeneratorTest {
         BufferedReader br = new BufferedReader(new InputStreamReader(resource));
         String expectedVersion = br.readLine().trim();
 
-        Assert.assertEquals("Version: " + expectedVersion, MessageGenerator.generateVersionMessage());
+        assertEquals("Version: " + expectedVersion, MessageGenerator.generateVersionMessage());
     }
 }

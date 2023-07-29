@@ -28,13 +28,14 @@ package com.github.jamesnetherton.lolcat4j.internal.console;
 import com.github.jamesnetherton.lolcat4j.Lol;
 import com.github.jamesnetherton.lolcat4j.internal.console.utils.LoggingPrintStream;
 import com.github.jamesnetherton.lolcat4j.internal.console.utils.NonWritableOutputStream;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.PrintStream;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ConsolePainterTest {
     private static final String LOL_TXT = "lol.txt";
@@ -57,7 +58,7 @@ public class ConsolePainterTest {
         ConsolePainter consolePainter = createPainter(printStream, lol);
         consolePainter.paint(lol);
 
-        Assert.assertEquals(expectedResult, printStream.getLoggedOutput());
+        assertEquals(expectedResult, printStream.getLoggedOutput());
     }
 
     @Test
@@ -79,7 +80,7 @@ public class ConsolePainterTest {
         ConsolePainter consolePainter = createPainter(printStream, lol);
         consolePainter.paint(lol);
 
-        Assert.assertEquals(expectedResult, printStream.getLoggedOutput());
+        assertEquals(expectedResult, printStream.getLoggedOutput());
     }
 
     @Test
@@ -98,7 +99,7 @@ public class ConsolePainterTest {
         ConsolePainter consolePainter = createPainter(printStream, lol);
         consolePainter.paint(lol);
 
-        Assert.assertEquals(expectedResult, printStream.getLoggedOutput());
+        assertEquals(expectedResult, printStream.getLoggedOutput());
     }
 
     @Test
@@ -117,7 +118,7 @@ public class ConsolePainterTest {
         ConsolePainter consolePainter = createPainter(printStream, lol);
         consolePainter.paint(lol);
 
-        Assert.assertEquals(expectedResult, printStream.getLoggedOutput());
+        assertEquals(expectedResult, printStream.getLoggedOutput());
     }
 
 

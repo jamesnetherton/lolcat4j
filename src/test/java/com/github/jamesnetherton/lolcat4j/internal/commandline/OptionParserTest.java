@@ -27,23 +27,24 @@ package com.github.jamesnetherton.lolcat4j.internal.commandline;
 
 import com.github.jamesnetherton.lolcat4j.Lol;
 import com.github.jamesnetherton.lolcat4j.LolCatConstants;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OptionParserTest {
 
     @Test
     public void testDefaultOptionValuesForEmptyArgs() throws Exception {
         Lol lol = new OptionParser().parse("");
-        Assert.assertFalse(lol.isAnimate());
-        Assert.assertEquals(LolCatConstants.DEFAULT_VALUE_DURATION, lol.getDuration());
-        Assert.assertEquals(LolCatConstants.DEFAULT_VALUE_FREQUENCY, lol.getFrequency());
-        Assert.assertEquals(LolCatConstants.DEFAULT_VALUE_SEED, lol.getSeed());
-        Assert.assertEquals(LolCatConstants.DEFAULT_VALUE_SPEED, lol.getSpeed());
-        Assert.assertEquals(LolCatConstants.DEFAULT_VALUE_SPREAD, lol.getSpread());
+        assertFalse(lol.isAnimate());
+        assertEquals(LolCatConstants.DEFAULT_VALUE_DURATION, lol.getDuration());
+        assertEquals(LolCatConstants.DEFAULT_VALUE_FREQUENCY, lol.getFrequency());
+        assertEquals(LolCatConstants.DEFAULT_VALUE_SEED, lol.getSeed());
+        assertEquals(LolCatConstants.DEFAULT_VALUE_SPEED, lol.getSpeed());
+        assertEquals(LolCatConstants.DEFAULT_VALUE_SPREAD, lol.getSpread());
     }
 
     @Test
@@ -58,12 +59,12 @@ public class OptionParserTest {
             .build();
 
         Lol lol = new OptionParser().parse(options);
-        Assert.assertTrue(lol.isAnimate());
-        Assert.assertEquals(Integer.valueOf("20"), lol.getDuration());
-        Assert.assertEquals(Double.valueOf("1.0"), lol.getFrequency());
-        Assert.assertEquals(Integer.valueOf("1"), lol.getSeed());
-        Assert.assertEquals(Double.valueOf("30.0"), lol.getSpeed());
-        Assert.assertEquals(Double.valueOf("5.0"), lol.getSpread());
+        assertTrue(lol.isAnimate());
+        assertEquals(Integer.valueOf("20"), lol.getDuration());
+        assertEquals(Double.valueOf("1.0"), lol.getFrequency());
+        assertEquals(Integer.valueOf("1"), lol.getSeed());
+        assertEquals(Double.valueOf("30.0"), lol.getSpeed());
+        assertEquals(Double.valueOf("5.0"), lol.getSpread());
     }
 
     @Test
@@ -79,12 +80,12 @@ public class OptionParserTest {
             .build();
 
         Lol lol = new OptionParser().parse(options);
-        Assert.assertTrue(lol.isAnimate());
-        Assert.assertEquals(Integer.valueOf("20"), lol.getDuration());
-        Assert.assertEquals(Double.valueOf("1.0"), lol.getFrequency());
-        Assert.assertEquals(Integer.valueOf("1"), lol.getSeed());
-        Assert.assertEquals(Double.valueOf("30.0"), lol.getSpeed());
-        Assert.assertEquals(Double.valueOf("5.0"), lol.getSpread());
+        assertTrue(lol.isAnimate());
+        assertEquals(Integer.valueOf("20"), lol.getDuration());
+        assertEquals(Double.valueOf("1.0"), lol.getFrequency());
+        assertEquals(Integer.valueOf("1"), lol.getSeed());
+        assertEquals(Double.valueOf("30.0"), lol.getSpeed());
+        assertEquals(Double.valueOf("5.0"), lol.getSpread());
     }
 
     @Test
@@ -96,7 +97,7 @@ public class OptionParserTest {
             .build();
 
         Lol lol = new OptionParser().parse(options);
-        Assert.assertEquals(Double.valueOf("10.0"), lol.getSpread());
+        assertEquals(Double.valueOf("10.0"), lol.getSpread());
     }
 
     @Test
@@ -107,7 +108,7 @@ public class OptionParserTest {
 
         try {
             new OptionParser().parse(options);
-            Assert.fail("Expected OptionParseException");
+            fail("Expected OptionParseException");
         } catch (UnknownOptionException e) {
             // Expected
         }
@@ -120,8 +121,8 @@ public class OptionParserTest {
             .build();
 
         Lol lol = new OptionParser().parse(options);
-        Assert.assertEquals(1, lol.getFiles().size());
-        Assert.assertEquals("myfile.txt", lol.getFiles().get(0).getName());
+        assertEquals(1, lol.getFiles().size());
+        assertEquals("myfile.txt", lol.getFiles().get(0).getName());
     }
 
     @Test
@@ -133,8 +134,8 @@ public class OptionParserTest {
             .build();
 
         Lol lol = new OptionParser().parse(options);
-        Assert.assertEquals(3, lol.getFiles().size());
-        Assert.assertEquals("myfile.txt", lol.getFiles().get(0).getName());
+        assertEquals(3, lol.getFiles().size());
+        assertEquals("myfile.txt", lol.getFiles().get(0).getName());
     }
 
     @Test
@@ -159,7 +160,7 @@ public class OptionParserTest {
         parser.setMessageWriter(messageWriter);
         parser.parse(options);
 
-        Assert.assertEquals(MessageGenerator.generateUsageMessage(optionList), messageWriter.getMessage());
+        assertEquals(MessageGenerator.generateUsageMessage(optionList), messageWriter.getMessage());
     }
 
     @Test
@@ -184,7 +185,7 @@ public class OptionParserTest {
         parser.setMessageWriter(messageWriter);
         parser.parse(options);
 
-        Assert.assertEquals(MessageGenerator.generateVersionMessage(), messageWriter.getMessage());
+        assertEquals(MessageGenerator.generateVersionMessage(), messageWriter.getMessage());
     }
 
     private static class OptionListBuilder {
