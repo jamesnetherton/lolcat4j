@@ -13,7 +13,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Project dependency versions -->
-    <version.junit>5.11.4</version.junit>
+    <version.junit>5.12.0</version.junit>
 
     <!-- Plugin versions -->
     <version.license.maven.plugin>2.4.0</version.license.maven.plugin>
