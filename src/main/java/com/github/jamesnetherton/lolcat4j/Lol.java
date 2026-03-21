@@ -7,6 +7,7 @@ import com.github.jamesnetherton.lolcat4j.internal.console.ConsolePrinter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +20,7 @@ public final class Lol {
     private Double speed = LolCatConstants.DEFAULT_VALUE_SPEED;
     private Double spread = LolCatConstants.DEFAULT_VALUE_SPREAD;
     private String text;
+    private InputStream inputStream;
     private final List<File> files = new ArrayList<>();
     private final ConsolePrinter consolePrinter = new ConsolePrinter(System.out);
     private ConsolePainter consolePainter = new ConsolePainter(consolePrinter);
@@ -83,6 +85,14 @@ public final class Lol {
         this.frequency = frequency;
     }
 
+    public InputStream getInputStream() {
+        return inputStream;
+    }
+
+    public void setInputStream(InputStream inputStream) {
+        this.inputStream = inputStream;
+    }
+
     public void addToFiles(File file) {
         files.add(file);
     }
@@ -103,12 +113,16 @@ public final class Lol {
         if (getText() != null && !getText().isEmpty()) {
             consolePainter.paint(this);
         } else {
-            try {
-                if (System.in.available() > 0) {
-                    consolePainter.paint(this, System.in);
+            if (inputStream != null) {
+                consolePainter.paint(this, inputStream);
+            } else {
+                try {
+                    if (System.in.available() > 0) {
+                        consolePainter.paint(this, System.in);
+                    }
+                } catch (IOException e) {
+                    System.err.println("Error reading from STDIN: " + e.getMessage());
                 }
-            } catch (IOException e) {
-                System.err.println("Error reading from STDIN: " + e.getMessage());
             }
 
             for (File file : this.getFiles()) {
@@ -176,6 +190,11 @@ public final class Lol {
 
         public LolCatBuilder frequency(Double frequency) {
             lol.setFrequency(frequency);
+            return this;
+        }
+
+        public LolCatBuilder inputStream(InputStream inputStream) {
+            lol.setInputStream(inputStream);
             return this;
         }
 

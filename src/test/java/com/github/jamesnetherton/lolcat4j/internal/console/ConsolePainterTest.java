@@ -5,8 +5,10 @@ import com.github.jamesnetherton.lolcat4j.internal.console.utils.LoggingPrintStr
 import com.github.jamesnetherton.lolcat4j.internal.console.utils.NonWritableOutputStream;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.PrintStream;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -96,6 +98,26 @@ public class ConsolePainterTest {
         assertEquals(expectedResult, printStream.getLoggedOutput());
     }
 
+
+    @Test
+    public void testCustomInputStream() throws Exception {
+        LoggingPrintStream printStream = new LoggingPrintStream(new NonWritableOutputStream());
+        String fileContent = readFile(LOL_TXT);
+        String expectedResult = readFile("nonAnimatedExpected.txt");
+
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(fileContent.getBytes(StandardCharsets.UTF_8));
+        Lol lol = Lol.builder()
+            .seed(1)
+            .frequency(3.0)
+            .spread(3.0)
+            .inputStream(inputStream)
+            .build();
+
+        ConsolePainter consolePainter = createPainter(printStream, lol);
+        consolePainter.paint(lol, lol.getInputStream());
+
+        assertEquals(expectedResult, printStream.getLoggedOutput());
+    }
 
     private ConsolePainter createPainter(PrintStream printStream, Lol lol) {
         ConsolePrinter printer = new ConsolePrinter(printStream, true);
