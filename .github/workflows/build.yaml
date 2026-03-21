@@ -33,7 +33,7 @@ jobs:
           java-version: ${{ matrix.java }}
           distribution: temurin
       - name: Cache Artifacts
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
