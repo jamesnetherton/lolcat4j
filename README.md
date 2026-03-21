@@ -43,6 +43,7 @@ Lol lol = Lol.builder()
     .spread(3.0)
     .text("Hello World!")
     .file(new File("my-file.txt"))
+    .inputStream(myInputStream)
     .build();
 lol.cat();
 ```

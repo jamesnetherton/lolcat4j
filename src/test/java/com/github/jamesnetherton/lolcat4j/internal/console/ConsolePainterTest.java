@@ -3,16 +3,32 @@ package com.github.jamesnetherton.lolcat4j.internal.console;
 import com.github.jamesnetherton.lolcat4j.Lol;
 import com.github.jamesnetherton.lolcat4j.internal.console.utils.LoggingPrintStream;
 import com.github.jamesnetherton.lolcat4j.internal.console.utils.NonWritableOutputStream;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.PrintStream;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ConsolePainterTest {
+    private PrintStream originalOut;
+
+    @BeforeEach
+    public void saveOut() {
+        originalOut = System.out;
+    }
+
+    @AfterEach
+    public void restoreOut() {
+        System.setOut(originalOut);
+    }
+
     private static final String LOL_TXT = "lol.txt";
     private static final String LOL_ANSI_TXT = "lolAnsi.txt";
     private static final String LOL_TABS_TXT = "lolTabs.txt";
@@ -96,6 +112,27 @@ public class ConsolePainterTest {
         assertEquals(expectedResult, printStream.getLoggedOutput());
     }
 
+
+    @Test
+    public void testCustomInputStream() throws Exception {
+        String fileContent = readFile(LOL_TXT);
+        String expectedResult = readFile("nonAnimatedExpected.txt");
+
+        LoggingPrintStream printStream = new LoggingPrintStream(new NonWritableOutputStream());
+        System.setOut(printStream);
+
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(fileContent.getBytes(StandardCharsets.UTF_8));
+        Lol lol = Lol.builder()
+            .seed(1)
+            .frequency(3.0)
+            .spread(3.0)
+            .inputStream(inputStream)
+            .build();
+
+        lol.cat();
+
+        assertEquals(expectedResult, printStream.getLoggedOutput());
+    }
 
     private ConsolePainter createPainter(PrintStream printStream, Lol lol) {
         ConsolePrinter printer = new ConsolePrinter(printStream, true);
