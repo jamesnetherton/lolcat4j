@@ -18,8 +18,16 @@ mvn clean package
 
 ## Running
 
+First download the runnable JAR from the [latest release](https://github.com/jamesnetherton/lolcat4j/releases), then run as follows.
+
 ```bash
 java -jar lolcat4j-0.5.0.jar [OPTION...] [FILE]...
+```
+
+Or download the native binary for your platform.
+
+```bash
+./lolcat4j-0.5.0-linux-amd64 [OPTION...] [FILE]...
 ```
 
 ## Use in your application
