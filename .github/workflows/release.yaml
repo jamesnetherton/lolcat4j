@@ -67,12 +67,16 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build JAR
         run: mvn -B -ntp package -DskipTests
-      - name: Build Native Image
-        shell: bash
+      - name: Build Native Image (Unix)
+        if: runner.os != 'Windows'
         run: |
           native-image -jar target/lolcat4j-${{ github.ref_name }}.jar \
             -H:Name=${{ matrix.native-name }} \
             --no-fallback
+      - name: Build Native Image (Windows)
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: native-image -jar target/lolcat4j-${{ github.ref_name }}.jar -H:Name=${{ matrix.native-name }} --no-fallback
       - name: Upload Native Binary
         uses: actions/upload-artifact@v4
         with:
