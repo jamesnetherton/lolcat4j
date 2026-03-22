@@ -130,6 +130,7 @@
             <version>${version.central.publishing.maven.plugin}</version>
             <extensions>true</extensions>
             <configuration>
+              <deploymentName>${project.name} ${project.version}</deploymentName>
               <publishingServerId>central</publishingServerId>
               <autoPublish>true</autoPublish>
             </configuration>
