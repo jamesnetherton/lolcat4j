@@ -43,14 +43,14 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            native-name: lolcat4j-linux-amd64
-            asset-name: lolcat4j-linux-amd64
+            platform: linux-amd64
+            ext: ''
           - os: windows-latest
-            native-name: lolcat4j-windows-amd64
-            asset-name: lolcat4j-windows-amd64.exe
+            platform: windows-amd64
+            ext: .exe
           - os: macos-latest
-            native-name: lolcat4j-macos-aarch64
-            asset-name: lolcat4j-macos-aarch64
+            platform: macos-aarch64
+            ext: ''
     steps:
       - name: Checkout Code
         uses: actions/checkout@v6
@@ -71,17 +71,17 @@ jobs:
         if: runner.os != 'Windows'
         run: |
           native-image -jar target/lolcat4j-${{ github.ref_name }}.jar \
-            -H:Name=${{ matrix.native-name }} \
+            -H:Name=lolcat4j-${{ github.ref_name }}-${{ matrix.platform }} \
             --no-fallback
       - name: Build Native Image (Windows)
         if: runner.os == 'Windows'
         shell: cmd
-        run: native-image -jar target/lolcat4j-${{ github.ref_name }}.jar -H:Name=${{ matrix.native-name }} --no-fallback
+        run: native-image -jar target/lolcat4j-${{ github.ref_name }}.jar -H:Name=lolcat4j-${{ github.ref_name }}-${{ matrix.platform }} --no-fallback
       - name: Upload Native Binary
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.asset-name }}
-          path: ${{ matrix.asset-name }}
+          name: lolcat4j-${{ github.ref_name }}-${{ matrix.platform }}${{ matrix.ext }}
+          path: lolcat4j-${{ github.ref_name }}-${{ matrix.platform }}${{ matrix.ext }}
 
   release:
     needs: [build-jar, build-native]
@@ -99,6 +99,6 @@ jobs:
           name: Release ${{ github.ref_name }}
           files: |
             lolcat4j-${{ needs.build-jar.outputs.version }}.jar
-            lolcat4j-linux-amd64
-            lolcat4j-windows-amd64.exe
-            lolcat4j-macos-aarch64
+            lolcat4j-${{ needs.build-jar.outputs.version }}-linux-amd64
+            lolcat4j-${{ needs.build-jar.outputs.version }}-windows-amd64.exe
+            lolcat4j-${{ needs.build-jar.outputs.version }}-macos-aarch64
