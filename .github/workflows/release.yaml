@@ -30,7 +30,7 @@ jobs:
         id: get-version
         run: echo "version=${{ github.ref_name }}" >> $GITHUB_OUTPUT
       - name: Upload JAR
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: jar
           path: target/lolcat4j-${{ github.ref_name }}.jar
@@ -78,7 +78,7 @@ jobs:
         shell: cmd
         run: native-image -jar target/lolcat4j-${{ github.ref_name }}.jar -H:Name=lolcat4j-${{ github.ref_name }}-${{ matrix.platform }} --no-fallback
       - name: Upload Native Binary
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: lolcat4j-${{ github.ref_name }}-${{ matrix.platform }}${{ matrix.ext }}
           path: lolcat4j-${{ github.ref_name }}-${{ matrix.platform }}${{ matrix.ext }}
